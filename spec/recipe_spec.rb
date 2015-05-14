@@ -1,6 +1,6 @@
 require('spec_helper')
 
-describe(Recipe) do
+  describe(Recipe) do
     it('has many ingredients') do
     new_recipe = Recipe.create(name: 'lasagne')
     ingredient1 = Ingredient.create(description: 'noodles', recipe_id: new_recipe.id)
@@ -9,10 +9,15 @@ describe(Recipe) do
   end
 
 
-it('rates a recipe') do
+  it('rates a recipe') do
     test_recipe1 = Recipe.create(name:'lasagne', rating: 3)
     test_recipe2 = Recipe.create(name:'ratatouille', rating: 4)
     test_recipe3 = Recipe.create(name: 'stir-fry', rating: 5)
     expect(Recipe.all()).to(eq([test_recipe1, test_recipe2, test_recipe3]))
+  end
+
+  it('validates the presence of a name') do
+    new_recipe = Recipe.new(name: " ")
+    expect(new_recipe.save()).to(eq(false))
   end
 end
