@@ -31,3 +31,22 @@ get('/recipes/:id') do
   @categories = Category.all()
   erb(:recipe)
 end
+
+post('/recipes/:id') do
+  recipe_id =params.fetch('id').to_i
+  description = params.fetch('description')
+  new_ingredient = Ingredient.create(description: description)
+  recipe = Recipe.find(recipe_id)
+  recipe.ingredients().push(new_ingredient)
+
+ redirect('/recipies/'.concat(recipe_id.to_s()))
+end
+
+patch('/recipes/:id') do
+  recipe_id = params.fetch('id').to_i
+  recipe_rate = params.fetch('rate')
+  recipe = Recipe.find(recipe_id)
+  recipe.update(rating: recipe_rate)
+
+  redirect('/recipes/'.concat(recipe_id.to_s()))
+end  
