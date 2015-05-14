@@ -8,3 +8,11 @@ describe(Recipe) do
     expect(new_recipe.ingredients()).to(eq([ingredient1, ingredient2]))
   end
 end
+
+it('rates a recipe') do
+    test_recipe1 = Recipe.create(name:'lasagne', rating: 3)
+    test_recipe2 = Recipe.create(name:'ratatouille', rating: 4)
+    test_recipe3 = Recipe.create(name: 'stir-fry', rating: 5)
+    expect(Recipe.all()).to(eq([test_recipe1, test_recipe2, test_recipe3]))
+  end
+end
