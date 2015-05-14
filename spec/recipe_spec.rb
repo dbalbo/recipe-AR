@@ -7,7 +7,7 @@ describe(Recipe) do
     ingredient2 = Ingredient.create(description: 'sauce', recipe_id: new_recipe.id)
     expect(new_recipe.ingredients()).to(eq([ingredient1, ingredient2]))
   end
-end
+
 
 it('rates a recipe') do
     test_recipe1 = Recipe.create(name:'lasagne', rating: 3)
